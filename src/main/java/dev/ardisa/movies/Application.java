@@ -2,11 +2,10 @@ package dev.ardisa.movies;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-
+@ComponentScan(basePackages = {"dev.ardisa.movies.movies", "dev.ardisa.movies.reviews"})
 
 public class MoviesApplication {
 

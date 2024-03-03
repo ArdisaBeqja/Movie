@@ -1,6 +1,6 @@
-package dev.ardisa.movies;
+package dev.ardisa.movies.com.movies;
 
-import Review.Review;
+import dev.ardisa.movies.com.reviews.ReviewRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,6 @@ import java.util.List;
 public class Movie {
     @Id
 private ObjectId id;
-    private String a;
 private String imdbId;
 private String releaseDate;
 private String trailerLink;
@@ -27,5 +26,5 @@ private List<String>genres;
 private List<String>backdrops;
 
 @DocumentReference
-private List<Review> reviewsIds;
+private List<ReviewRepository> reviewsIds;
 }
