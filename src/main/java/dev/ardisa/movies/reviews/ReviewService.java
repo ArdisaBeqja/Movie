@@ -1,9 +1,10 @@
-package dev.ardisa.movies.com.reviews;
+package dev.ardisa.movies.reviews;
 
-import dev.ardisa.movies.com.movies.Movie;
+import dev.ardisa.movies.movies.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +20,13 @@ public class ReviewService {
     public Review createReview(String reviewBody, String imdbId){
         Review review=reviewRepository.insert(new Review(reviewBody));
 
-        mongoTemplate.update(Movie.class)
-                .matching(Criteria.where("imdbId").is(imdbId))
-                .apply(new Update().push("reviewIds").value(review))
-                .first();
-//        Query query = new Query(Criteria.where("imdbId").is(imdbId));
-//        Update update = new Update().push("reviewIds").value(review);
-//        mongoTemplate.updateFirst(query, update, Movie.class);
+//        mongoTemplate.update(Movie.class)
+//                .matching(Criteria.where("imdbId").is(imdbId))
+//                .apply(new Update().push("reviewIds").value(review))
+//                .first();
+        Query query = new Query(Criteria.where("imdbId").is(imdbId));
+        Update update = new Update().push("reviewIds").value(review);
+        mongoTemplate.updateFirst(query, update, Movie.class);
 
 
         return review;

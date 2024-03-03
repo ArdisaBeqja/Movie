@@ -1,4 +1,4 @@
-package dev.ardisa.movies.com.reviews;
+package dev.ardisa.movies.reviews;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

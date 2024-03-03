@@ -1,4 +1,4 @@
-package dev.ardisa.movies.com.reviews;
+package dev.ardisa.movies.reviews;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

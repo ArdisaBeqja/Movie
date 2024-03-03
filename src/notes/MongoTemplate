@@ -1,0 +1,51 @@
+MongoTemplate if we want to performe more complex database operations,
+for example find the students whose avg is above 8,
+meaning MontoTemplate supports operations that are not simple crud ones
+
+whenever i need to perform a complex query i have to use the MongoTemplate
+
+METHODS:
+1.Insert
+mongoTemplate.insert(objectToSave, "collectionName");
+shton nje row te ri
+
+2.where("fieldName").is(value)
+Query query = new Query(Criteria.where("name").is("John"));
+find properites "fieldNames" that match the value in Db
+
+3.FindOne
+// Create a query to find a person with the name "John"
+Query query =new Query(Criteria.where("fieldName").is("value"));
+Person result = mongoTemplate.findOne(query, Person.class);
+if we find it the return type will be Person.class
+
+4.Update- (query,update,Object.class)
+  4.1-set when a value already exists
+  Query query = new Query(Criteria.where("name").is("John"));
+  Update update = new Update().set("age", 30);
+  mongoTemplate.updateFirst(query, update, Person.class);
+
+  4.2-push
+  Query query = new Query(Criteria.where("imdbId").is(imdbId));
+  Update update = new Update().push("reviewIds").value(review);
+  mongoTemplate.updateFirst(query, update, Movie.class);
+
+5.Remove- (query, Object.class)
+duam te heqim disa element komplex,hiq kur emrin e ka Jhon dhe esht 30 yo
+Query query = new Query(Criteria.where("name").is("John").and("age").gt(30));
+mongoTemplate.remove(query, Person.class);
+gt: Greater than
+gte: Greater than or equal to
+lt: Less than
+lte: Less than or equal to
+ne: Not equal to
+
+6.Aggregation
+7.Distinct Values
+8.Text Search
+9.Index Operations
+10.Bulk Operations
+
+
+
+

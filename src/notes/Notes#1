@@ -127,6 +127,10 @@ findById is a Repository method that finds the object by their id
 
 findBy<Property> a method found in MongoRepository to find a property
 
+duam te fusim nje element ne databaz, do perdorim insert
+sepse insert gjendet tek MongoRepository
+
+
 
 
 

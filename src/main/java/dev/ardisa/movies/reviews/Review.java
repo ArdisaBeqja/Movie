@@ -1,4 +1,4 @@
-package dev.ardisa.movies.com.reviews;
+package dev.ardisa.movies.reviews;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

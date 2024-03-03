@@ -1,6 +1,6 @@
-package dev.ardisa.movies.com.movies;
+package dev.ardisa.movies.movies;
 
-import dev.ardisa.movies.com.reviews.ReviewRepository;
+import dev.ardisa.movies.reviews.ReviewRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
