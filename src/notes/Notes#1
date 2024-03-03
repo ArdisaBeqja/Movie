@@ -1,0 +1,132 @@
+ RestController annotation is that the
+ return value will be serizalized meaning that the object will be converted into a byte stream
+ or anther format that is easlisy transimeted
+ so we use RestController to create api endpoints and to serialize the objects
+
+GetMapping: we map get api endpoint to handler methods
+dmth kur therret nje endpoint, do thirret nje metod specifike
+
+RequestMapping eshte si GetMapping por eshte per te gjitha
+in order to map java object with MongoDb documents we use the @Document (ROWS)
+
+RequestMapping is the common endpoint for all methods used
+if we want something specific after the given endpoint we can add a method level mapping
+
+
+*******
+@RestController
+@RequestMapping("/api/v1/movies") // Class-level mapping
+public class MovieControllers {
+
+    @GetMapping // Method-level mapping without a specific value
+    public String allMovies() {
+        return "All movies";
+    }
+}
+
+*******
+ObjectId is a data type used in MongoDB to uniquely identify documents within a collection.
+
+@Data is part of Lombok library that helps to reduce boilerplate code
+by automatically generating commong methods,getters,setters,equals,consturctor
+
+Boilerplate repetative/standartized code
+
+DocumentReference we create refrences to entities
+similar to one-to-many reaaltionship
+
+if in the return type we also want to define the status code we use ResponseEntity
+
+Bean is an instance of a class manged by Spring Container
+
+Spring Container responsible for managing all the beans, performs dependecy injection
+
+**
+Dependecny-jan objekte nga klasa te tjera qe klasa akutale i perdor
+Injection- is the process of providing dependecies to a class,
+            consturctor,methods,setteing properties.
+Inversion Controll- flow controll is inverted,dependecies are provided form outside
+
+example:
+without dependency injection
+
+ public Car() {
+// Creating the Engine instance within the Car class
+this.engine = new Engine();
+}
+
+with dependecny injeciton
+// Constructor Injection: Engine is provided from the outside
+    public Car(Engine engine) {
+        this.engine = engine;
+}
+
+       // Without Dependency Injection (Control is with Car)
+        Car car1 = new Car(); // Car1 creates its own Engine
+
+        // With Dependency Injection (Control is with Main)
+        Engine engine = new Engine();
+        Car car2 = new Car(engine); // Main creates and provides the Engine
+
+so inversion of Controll, the controll is reversed.
+the controll over the engine class is in the Main class
+while the controll in the first case is in the car class
+
+
+WHY WE DO IT?
+na e ben me te leht punen per te testuar Car class
+when we inject dependencies,such as Engine into the Car clas
+we can easliy mock the Engine class
+we also isolate the car class,focus on its behavior without
+worrying about the acual Engine implementation
+
+IoC container:scanning the project,identify object or dependencies and wire them together
+Spring container:
+1.Bean factory(bean instantiation, wiring dependencies and bean lifecycle)
+2.Application context(super set of been factory)
+
+Bean: nje object maintained by Spring IoC container
+bean krijohet duke ber @Repository @Container @Service
+ben automatik injection
+EXAMPLE
+// Creating Spring IoC container
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // Retrieving Spring bean (UserService)
+        UserService userService = context.getBean(UserService.class);
+        userService.getUserInfo();
+
+        // Creating and using a regular object (RegularUserService)
+        RegularUserRepository regularUserRepository = new RegularUserRepository();
+        RegularUserService regularUserService = new RegularUserService(regularUserRepository);
+        regularUserService.getUserInfo();
+
+
+WHY DO WE NEED AUTOMATIK injection?
+loose coupling:classes do not need to know the details
+of how their dependencies are created.
+with automatic injection we can easily test that
+automatic dependecy injection eliminates much of boilerplate code.
+
+ by using @Autowire we can eleminate the dependecy injection done in the costurcutor
+ The @Autowired annotation in Spring is a form of automatic dependency injection, and when applied to fields, methods, or constructors, it eliminates the need for manual dependency injection
+ through constructors or setter methods.
+
+@Repository is specifically for data access components
+DAO and is associated with database operations
+@Service is used for business logic
+
+findAll is a method that retrives all rows or documents in MongoDb
+
+@PathVariable indicates that the method will take as arguments the placeholder in the RequestMapping
+
+Optional<Object> perdoret kur kemi nje Object qe po i bjem return
+dhe ky object mund t jet null ose jo, qe te reduktoj null pointer exceptions
+
+findById is a Repository method that finds the object by their id
+
+findBy<Property> a method found in MongoRepository to find a property
+
+
+
+
